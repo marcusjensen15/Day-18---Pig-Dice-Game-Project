@@ -8,8 +8,9 @@
 //Toggle correct player between Zero and One to indicate current player
 
 var randomNumber;
-var currentResult = 0;
-var currentPlayerTotal;
+var currentResult = 10;
+// var currentPlayerTotal;
+var currentPlayer = 0;
 
 //need variable to old whichever object total we are currently focused on
 
@@ -29,13 +30,7 @@ function updateCurrentResult(){
   }
 };
 
-function hold(){
 
-  //total area of respective object + currentResult;
-  currentPlayerTotal;//Player1 or Player2
-
-
-}
 
 Player = function(name){
 
@@ -67,6 +62,14 @@ var gameManager = new GameManager();
 
 // gameManager.addPlayer()
 
+function hold(){
+
+gameManager.players[currentPlayer].playerTotal += gameManager.players[currentPlayer].playerTotal + currentResult;
+if(currentPlayer === 0){ currentPlayer = 1;}else{currentPlayer = 0;}
+
+}
+
+
 
 
 
@@ -89,10 +92,23 @@ var gameManager = new GameManager();
 // 2. Hide the form and show the game when the player submits.
 
 $(document).ready(function(){
+
+  $("#hold").click(function() {
+    console.log(gameManager.players[currentPlayer].playerTotal);
+    hold();
+    console.log(gameManager.players[1-currentPlayer].playerTotal);
+    console.log(currentPlayer);
+
+
+
+
+  });
   $(".form-input").submit(function(event){
     event.preventDefault();
     var newPlayer1 = $("#addPlayer1").val();
     var newPlayer2 = $("#addPlayer2").val();
+
+
 
     var newPlayer1 = new Player(newPlayer1);
     gameManager.addPlayer(newPlayer1);
@@ -101,7 +117,9 @@ $(document).ready(function(){
     console.log(gameManager.players);
 
 
-
-
   });
+
+
+
+
 });
