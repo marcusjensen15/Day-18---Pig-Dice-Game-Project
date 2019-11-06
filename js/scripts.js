@@ -8,7 +8,7 @@
 //Toggle correct player between Zero and One to indicate current player
 
 var randomNumber;
-var currentResult = 10;
+var currentResult = 0;
 // var currentPlayerTotal;
 var currentPlayer = 0;
 
@@ -20,13 +20,18 @@ var currentPlayer = 0;
 function updateCurrentResult(){
   randomNumber = Math.floor((Math.random() * 6) + 1);
   console.log(randomNumber);
+
   if(randomNumber === 1){
     currentResult = 0;
+
+    if(currentPlayer === 0){currentPlayer = 1;     randomNumber = 0;} //this is new
+    else{currentPlayer = 0;    randomNumber = 0;} //this is new
     //statement here switching from Player1 to Player2;
 
     //add code here to switch to other player
   }else{
     currentResult += randomNumber;
+    randomNumber = 0; //this is new
   }
 };
 
@@ -65,7 +70,9 @@ var gameManager = new GameManager();
 function hold(){
 
 gameManager.players[currentPlayer].playerTotal += gameManager.players[currentPlayer].playerTotal + currentResult;
-if(currentPlayer === 0){ currentPlayer = 1;}else{currentPlayer = 0;}
+if(currentPlayer === 0){ currentPlayer = 1; currentResult = 0;}else{currentPlayer = 0; currentResult = 0;}
+
+randomNumber = 0; //this is new
 
 }
 
@@ -93,14 +100,20 @@ if(currentPlayer === 0){ currentPlayer = 1;}else{currentPlayer = 0;}
 
 $(document).ready(function(){
 
+  $("#roll").click(function() {
+    // console.log(gameManager.players[0].playerTotal, gameManager.players[1].playerTotal);
+    updateCurrentResult();
+    console.log(gameManager.players[0].playerTotal, gameManager.players[1].playerTotal);
+
+
+  });
+
+
   $("#hold").click(function() {
-    console.log(gameManager.players[currentPlayer].playerTotal);
+    // console.log(gameManager.players[currentPlayer].playerTotal);
     hold();
-    console.log(gameManager.players[1-currentPlayer].playerTotal);
-    console.log(currentPlayer);
-
-
-
+    // console.log(gameManager.players[1-currentPlayer].playerTotal);
+    // console.log(currentPlayer);
 
   });
   $(".form-input").submit(function(event){
