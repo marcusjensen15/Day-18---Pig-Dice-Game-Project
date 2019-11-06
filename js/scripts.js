@@ -69,12 +69,23 @@ var gameManager = new GameManager();
 
 function hold(){
 
-gameManager.players[currentPlayer].playerTotal += gameManager.players[currentPlayer].playerTotal + currentResult;
+gameManager.players[currentPlayer].playerTotal = gameManager.players[currentPlayer].playerTotal + currentResult;
 if(currentPlayer === 0){ currentPlayer = 1; currentResult = 0;}else{currentPlayer = 0; currentResult = 0;}
 
 randomNumber = 0; //this is new
-
+console.log("hold");
+winner();
 }
+
+function winner(){
+  if(gameManager.players[0].playerTotal > 20){
+    console.log("Player one wins");
+  }else if(gameManager.players[1].playerTotal > 20)
+
+    console.log("Player 2 wins");
+}
+
+
 
 
 
@@ -129,6 +140,7 @@ $(document).ready(function(){
     gameManager.addPlayer(newPlayer2);
     console.log(gameManager.players);
 
+    // winner();
 
   });
 
