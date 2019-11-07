@@ -11,18 +11,43 @@
     <title></title>
   </head>
   <body>
-    <h2>Pig Dice</h2>
+    <h2 id="gameTitle">Pig Dice</h2>
     <div class="container">
-      <form class="form-input">
-        <label for="addPlayer1">Player 1 enter your name.</label>
+      <form class="form-input" id="playerNames">
+        <label for="addPlayer1">Player 1 enter your name:</label>
         <input type="text" id="addPlayer1">
-        <label for="addingPlayer2">Player 2 enter your name.</label>
+        <label for="addingPlayer2">Player 2 enter your name:</label>
         <input type="text" id="addPlayer2">
         <button type="submit" name="button">Begin!</button>
       </form>
+    <!-- Here is where we will display each players score -->
+
+    <div class="card" id="card1" style="width: 18rem;">
+      <img class="card-img-top">
+      <div class="card-body" id="player1">
+      <h5 class="card-title">Player 1 Score</h5>   <!--Will replace with actual players name -->
+        <p class="card-text" id="playerScore">Score Goes Here</p>
+
+      </div>
+    </div>
+    <div class="card" id="card2" style="width: 18rem;">
+      <img class="card-img-top">
+      <div class="card-body" id="player1">
+      <h5 class="card-title">Player 2 Score</h5>   <!--Will replace with actual players name -->
+        <p class="card-text" id="playerScore2">Score Goes Here</p>
+
+      </div>
+    </div>
+    <div class="lastRoll-currentScore">
+      <div id="rollHolder">Roll Goes Here</div> <br>
+      <div id="roundScore">roundScore Goes Here</div>
+    </div>
+    <div class="buttons">
+
+
       <button id="hold" type="button" name="hold">Hold</button>
       <button id="roll" type="button" name="hold">Roll</button>
-
+    </div>
     </div>
 
   </body>
